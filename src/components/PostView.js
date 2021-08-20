@@ -1,14 +1,12 @@
-import { useContext, useState } from 'react';
-// import useJsonFetch from '../hooks/useJsonFetch';
+import { useState } from 'react';
+import useJsonFetch from '../hooks/useJsonFetch';
 import Post from './Post';
 import Form from './Form';
-import PostsContext from '../contexts/PostsContext';
 
 export default function PostView({ match, history }) {
   
   const [isEdit, setEdit] = useState(false);
-  // const [posts] = useJsonFetch(process.env.REACT_APP_POSTS_URL, isEdit);
-  const { posts } = useContext(PostsContext);
+  const [posts] = useJsonFetch(process.env.REACT_APP_POSTS_URL, isEdit);
 
   const handleDelete = () => {
     fetch(`${process.env.REACT_APP_POSTS_URL}/${match.params.id}`,
